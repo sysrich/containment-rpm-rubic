@@ -37,7 +37,7 @@ fetch() # {{{
 {
   set -eu
   local tag=${1?}
-  wget -qO $tarball $dloadurl/tarball/"$@"
+  wget -qO $tarball $dloadurl/tarball/$tag
 } # }}}
 repack() # {{{
 {
@@ -54,7 +54,6 @@ extract() # {{{
   set -eu
   local tarball=${1?}
   local file=${tarball%.tar.gz}/${2?}
-  shift
   tar -xzf $tarball --strip-components=1 $file
 } # }}}
 update() # {{{
@@ -92,7 +91,7 @@ exithook() # {{{
 
 trap exithook EXIT
 root=$(mktemp -d)
-echo $root
+echo "$0: root=$root"
 cd $root
 osc co $pkgdir
 fetch $tag
