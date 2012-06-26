@@ -58,7 +58,7 @@ extract() # {{{
 update() # {{{
 {
   local specfile=${1?} version=${2?}
-  sed -ri '/^Version:/s/__VERSION__/'$version'/' $specfile
+  sed -r '/^Version:/s/__VERSION__/'$version'/' $specfile.in > $specfile
 } # }}}
 exithook() # {{{
 {
@@ -77,7 +77,7 @@ repack $tarball
 rm -f $pkgdir/$gitname-*.tar.gz
 mv $tarball $pkgdir
 cd $pkgdir
-extract $tarball $specfile
+extract $tarball $specfile.in
 update $specfile $version
 echo osc build
 osc ar $gitname-*.tar.gz
