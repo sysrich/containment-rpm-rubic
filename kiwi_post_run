@@ -1,0 +1,32 @@
+#!/bin/sh -eu
+
+TARGET_DIR=/usr/src/packages/KIWI-vmx/
+RPM_SOURCE_DIR=/usr/src/packages/SOURCES
+FILES_DIR=/usr/lib/build
+
+cd $TARGET_DIR
+
+STEM=Containment-Studio
+EXT=.raw
+SOURCE=$(echo $STEM-*$EXT)
+
+# extract os/platform, version, release from the source tarball
+set -- $(echo $SOURCE | sed -r "s/(.*)-(.*)$EXT/\1 \2/")
+NAME=$(echo $1 | sed -r "s/.x86_64//g")
+VERSION=$2
+RELEASE=$(date +%Y%m%d%H%M%S)
+
+echo "name $NAME"
+echo "version $VERSION"
+echo "release $RELEASE"
+
+sed -e "s/__NAME__/$NAME/g" \
+    -e "s/__VERSION__/$VERSION/g" \
+    -e "s/__RELEASE__/$RELEASE/g" \
+    -e "s/__SOURCE__/$SOURCE/g" \
+    < $FILES_DIR/image.spec.in \
+    > $FILES_DIR/image.spec
+
+tar -cjf $RPM_SOURCE_DIR/$NAME-$VERSION-$RELEASE-vmx.tar.bz2 $SOURCE
+rpmbuild -ba $FILES_DIR/image.spec
+
