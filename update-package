@@ -101,5 +101,5 @@ update $tarball
 cd $pkgdir
 extract $tarball $specfile.in
 update $specfile $version
-echo osc build
-echo osc ci
+#osc build
+osc ci
