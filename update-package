@@ -6,11 +6,13 @@ if test $# -lt 1; then
   exit 1
 fi
 
-bsapiurl=https://api.suse.de/
-pkgname=build_rpm_from_image
-gitname=containment-rpm
-pkgdir=Devel:StudioOnline:containment_common_packages/$pkgname
+project=Devel:StudioOnline:containment_common_packages
+project=home:rneuhauser
+pkgname=containment-rpm
+gitname=$pkgname
 dloadurl=https://github.com/openSUSE/$gitname
+bsapiurl=https://api.suse.de/
+pkgdir=$project/$pkgname
 specfile=$gitname.spec
 tag=$1
 version=${tag#v}
