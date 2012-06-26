@@ -59,8 +59,29 @@ extract() # {{{
 } # }}}
 update() # {{{
 {
+  case $1 in
+  *.spec)  update_specfile "$@" ;;
+  *.tar.*) update_tarball "$@" ;;
+  esac
+} # }}}
+update_specfile() # {{{
+{
   local specfile=${1?} version=${2?}
   sed -r '/^Version:/s/__VERSION__/'$version'/' $specfile.in > $specfile
+} # }}}
+update_tarball() # {{{
+{
+  local tarball=${1?} rewrite=0
+  if test -f $pkgdir/$tarball; then
+    rewrite=1
+  fi
+  if test 0 -eq $rewrite && test -f $pkgdir/$gitname-*.tar.gz; then
+    osc rm $pkgdir/$gitname-*.tar.gz
+  fi
+  mv $tarball $pkgdir
+  if test 0 -eq $rewrite; then
+    osc add $pkgdir/$tarball
+  fi
 } # }}}
 exithook() # {{{
 {
@@ -76,11 +97,9 @@ cd $root
 osc co $pkgdir
 fetch $tag
 repack $tarball
-rm -f $pkgdir/$gitname-*.tar.gz
-mv $tarball $pkgdir
+update $tarball
 cd $pkgdir
 extract $tarball $specfile.in
 update $specfile $version
 echo osc build
-osc ar $gitname-*.tar.gz
 echo osc ci
