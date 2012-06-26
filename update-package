@@ -53,9 +53,9 @@ extract() # {{{
 {
   set -eu
   local tarball=${1?}
-  local dir=${tarball%.tar.gz}
+  local file=${tarball%.tar.gz}/${2?}
   shift
-  tar -xzf $tarball --strip-components=1 $@
+  tar -xzf $tarball --strip-components=1 $file
 } # }}}
 update() # {{{
 {
