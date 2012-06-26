@@ -14,16 +14,14 @@
 
 # norootforbuild
 
-%define gitname containment-rpm
-
-Name:           build_rpm_from_image
+Name:           containment-rpm
 Version:        __VERSION__
 Release:        0
 License:        MIT
 Summary:        Wraps OBS/kiwi-built images in rpms.
-Url:            https://github.com/openSUSE/%{gitname}
+Url:            https://github.com/openSUSE/%{name}
 Group:          System/Management
-Source:         %{gitname}-%{version}.tar.gz
+Source:         %{name}-%{version}.tar.gz
 BuildRequires:  filesystem
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
