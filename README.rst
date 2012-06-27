@@ -6,7 +6,7 @@
 `Devel:StudioOnline:containment_common_packages/containment-rpm`_.
 `image.spec.in`, `kiwi_post_run` and `containment-rpm.spec.in` are
 the actual sources and metasources, `update-package` takes care of
-updating the IBS package from Github.
+updating the Build Service package from Github.
 
 .. _openSUSE/containment: https://github.com/openSUSE/containment-rpm
 .. _Devel:StudioOnline:containment_common_packages/containment-rpm:
@@ -17,7 +17,7 @@ Hacking
 
 * Commit desired changes and *tag* them, push to Github.
 * Run `update-package` with the tag as its argument.
-* `update-package` can be used with different IBS projects,
+* `update-package` can be used with different BS projects,
   see `update-package -h`.
 
 Example
