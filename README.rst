@@ -29,6 +29,6 @@ Example
   cd containment-rpm
   vi kiwi_post_run
   git commit -a
-  git tag master v42.69
-  git push v42.69
+  git tag v42.69
+  git push origin master v42.69
   ./update-package -p home:rneuhauser v42.69
