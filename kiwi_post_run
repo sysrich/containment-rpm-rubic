@@ -1,6 +1,6 @@
 #!/bin/sh -eu
 
-: ${TOPDIR?}
+: ${TOPDIR:=/usr/src/packages}
 
 TARGET_DIR=$TOPDIR/KIWI-vmx/
 RPM_SOURCE_DIR=$TOPDIR/SOURCES
