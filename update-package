@@ -12,9 +12,11 @@ if test $# -lt 1; then
 fi
 
 project=Devel:StudioOnline:containment_common_packages
+bsapiurl=https://api.suse.de/
 
 while getopts hp: optname; do
   case $optname in
+  A) bsapiurl=$OPTARG ;;
   h) usage 0 ;;
   p) project=$OPTARG ;;
   ?) usage 1 ;;
@@ -24,7 +26,6 @@ shift $(($OPTIND - 1))
 
 package=containment-rpm
 dloadurl=https://github.com/openSUSE/$package
-bsapiurl=https://api.suse.de/
 pkgdir=$project/$package
 specfile=$package.spec
 tag=$1
