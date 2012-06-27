@@ -1,7 +1,9 @@
 #!/bin/sh -eu
 
-TARGET_DIR=/usr/src/packages/KIWI-vmx/
-RPM_SOURCE_DIR=/usr/src/packages/SOURCES
+: ${TOPDIR?}
+
+TARGET_DIR=$TOPDIR/KIWI-vmx/
+RPM_SOURCE_DIR=$TOPDIR/SOURCES
 FILES_DIR=/usr/lib/build
 
 cd $TARGET_DIR
