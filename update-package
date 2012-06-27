@@ -87,9 +87,7 @@ update_tarball() # {{{
 } # }}}
 exithook() # {{{
 {
-  pwd
-  ls -a
-  #rm -rf $root
+  rm -rf $root
 } # }}}
 
 trap exithook EXIT
