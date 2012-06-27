@@ -29,4 +29,5 @@ sed -e "s/__NAME__/$NAME/g" \
 
 tar -cjf $RPM_SOURCE_DIR/$NAME-$VERSION-$RELEASE-vmx.tar.bz2 $SOURCE
 rpmbuild -ba $FILES_DIR/image.spec
+mv /usr/src/packages/RPMS/noarch/$NAME-$VERSION-$RELEASE.noarch.rpm /usr/src/packages/OTHER
 
