@@ -3,7 +3,7 @@
 
 usage() # {{{
 {
-  printf "Usage: $0 {-h|--help|[-p <project>] <tag>}\n" >&2
+  printf "Usage: $0 {-h|[-p <project>] <tag>}\n" >&2
   exit $1
 } # }}}
 
