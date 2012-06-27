@@ -1,13 +1,27 @@
 #!/bin/sh -eu
 # vim: fdm=marker cms=\ #\ %s
 
+usage() # {{{
+{
+  printf "Usage: $0 {-h|--help|[-p <project>] <tag>}\n" >&2
+  exit $1
+} # }}}
+
 if test $# -lt 1; then
-  echo "Usage: $0 {-h|--help|<tag>}" >/dev/stderr
-  exit 1
+  usage 1
 fi
 
 project=Devel:StudioOnline:containment_common_packages
-project=home:rneuhauser
+
+while getopts hp: optname; do
+  case $optname in
+  h) usage 0 ;;
+  p) project=$OPTARG ;;
+  ?) usage 1 ;;
+  esac
+done
+shift $(($OPTIND - 1))
+
 pkgname=containment-rpm
 gitname=$pkgname
 dloadurl=https://github.com/openSUSE/$gitname
@@ -17,16 +31,6 @@ specfile=$gitname.spec
 tag=$1
 version=${tag#v}
 tarball=$gitname-$version.tar.gz
-
-case $tag in
--h|--help)
-  printf "%s\n" \
-    "$0 <tag>" \
-    "" \
-    "Updates $pkgdir" "from $dloadurl @ <tag>." >&2
-  exit 0
-  ;;
-esac
 
 osc() # {{{
 {
