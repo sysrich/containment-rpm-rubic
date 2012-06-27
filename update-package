@@ -1,5 +1,9 @@
-#!/bin/sh -eu
+#!/bin/sh
 # vim: fdm=marker cms=\ #\ %s
+
+set -o errexit
+set -o nounset
+set -o posix
 
 usage() # {{{
 {
@@ -62,6 +66,7 @@ extract() # {{{
 } # }}}
 update() # {{{
 {
+  set -eu
   case $1 in
   *.spec)  update_specfile "$@" ;;
   *.tar.*) update_tarball "$@" ;;
@@ -69,11 +74,13 @@ update() # {{{
 } # }}}
 update_specfile() # {{{
 {
+  set -eu
   local specfile=${1?} version=${2?}
   sed -r '/^Version:/s/__VERSION__/'$version'/' $specfile.in > $specfile
 } # }}}
 update_tarball() # {{{
 {
+  set -eu
   local tarball=${1?} rewrite=0
   if test -f $pkgdir/$tarball; then
     rewrite=1
@@ -88,6 +95,7 @@ update_tarball() # {{{
 } # }}}
 exithook() # {{{
 {
+  set -eu
   rm -rf $root
 } # }}}
 
