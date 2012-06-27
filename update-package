@@ -22,15 +22,14 @@ while getopts hp: optname; do
 done
 shift $(($OPTIND - 1))
 
-pkgname=containment-rpm
-gitname=$pkgname
-dloadurl=https://github.com/openSUSE/$gitname
+package=containment-rpm
+dloadurl=https://github.com/openSUSE/$package
 bsapiurl=https://api.suse.de/
-pkgdir=$project/$pkgname
-specfile=$gitname.spec
+pkgdir=$project/$package
+specfile=$package.spec
 tag=$1
 version=${tag#v}
-tarball=$gitname-$version.tar.gz
+tarball=$package-$version.tar.gz
 
 osc() # {{{
 {
@@ -78,8 +77,8 @@ update_tarball() # {{{
   if test -f $pkgdir/$tarball; then
     rewrite=1
   fi
-  if test 0 -eq $rewrite && test -f $pkgdir/$gitname-*.tar.gz; then
-    osc rm $pkgdir/$gitname-*.tar.gz
+  if test 0 -eq $rewrite && test -f $pkgdir/$package-*.tar.gz; then
+    osc rm $pkgdir/$package-*.tar.gz
   fi
   mv $tarball $pkgdir
   if test 0 -eq $rewrite; then
