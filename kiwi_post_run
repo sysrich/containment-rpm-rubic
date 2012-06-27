@@ -32,3 +32,7 @@ sed -e "s/__NAME__/$NAME/g" \
 tar -cjf $RPM_SOURCE_DIR/$NAME-$VERSION-$RELEASE-vmx.tar.bz2 $SOURCE
 rpmbuild -ba $FILES_DIR/image.spec
 
+# required for the BS to find the rpm, because it is
+# a "non-standard result file for KIWI"
+mkdir -p $TOPDIR/OTHER
+mv $TOPDIR/RPMS/noarch/$NAME-$VERSION-$RELEASE.noarch.rpm $TOPDIR/OTHER/
