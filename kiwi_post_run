@@ -9,7 +9,7 @@ FILES_DIR=/usr/lib/build
 cd $TARGET_DIR
 
 STEM=Containment-Studio
-EXT=.raw
+EXT=.qcow2
 SOURCE=$(echo $STEM-*$EXT)
 
 # extract os/platform, version, release from the source tarball
