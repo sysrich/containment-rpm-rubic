@@ -1,8 +1,9 @@
 =====================================================================
-                      openSUSE/containment-rpm
+                      containment-rpm-rubic
 =====================================================================
 
-`openSUSE/containment-rpm`_ is the authoritative source for
+containerment-rpm-rubic is a fork of 
+`openSUSE/containment-rpm`_ which was the authoritative source for
 `Devel:StudioOnline:containment_common_packages/containment-rpm`_.
 ``image.spec.in``, ``kiwi_post_run`` and ``containment-rpm.spec.in`` are
 the actual sources and metasources, and ``update-package`` takes care of
