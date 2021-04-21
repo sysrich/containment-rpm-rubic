@@ -15,8 +15,8 @@ if test $# -lt 1; then
   usage 1
 fi
 
-project=Devel:StudioOnline:containment_common_packages
-bsapiurl=https://api.suse.de/
+project=home:RBrownSUSE:rubic
+bsapiurl=https://api.opensuse.org/
 
 while getopts hp: optname; do
   case $optname in
@@ -28,8 +28,8 @@ while getopts hp: optname; do
 done
 shift $(($OPTIND - 1))
 
-package=containment-rpm
-dloadurl=https://github.com/openSUSE/$package
+package=containment-rpm-rubic
+dloadurl=https://github.com/sysrich/$package
 pkgdir=$project/$package
 specfile=$package.spec
 tag=$1
